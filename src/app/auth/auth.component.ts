@@ -20,6 +20,7 @@ export class AuthComponent {
     }
 
     onSubmit(form: NgForm) {
+        console.log(form.value);
         if (form.invalid) {
             return;
         }
