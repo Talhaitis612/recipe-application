@@ -14,5 +14,5 @@ export const initialState = {
 
 export const shoppingListReducer = createReducer(
     initialState,
-on(ShoppingListActions.addIngredient, (state, {ingredient}) => ({...state, ingredients : [...state.ingredients,ingredient]}))
+    on(ShoppingListActions.addIngredient, (state, { ingredient }) => ({ ...state, ingredients: [...state.ingredients, ingredient] }))
 )
