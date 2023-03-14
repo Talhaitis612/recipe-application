@@ -3,30 +3,30 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
 
 // export const ADD_INGREDIENT = createAction('ADD_INGREDIENT');
 export const addIngredient = createAction(
-  '[Shopping List] ADD_INGREDIENT',
+  '[Shopping List] Add Ingredient',
   props<Ingredient>()
 );
 
 export const addIngredients = createAction(
-  'Recipe Edit ADD_INGREDIENTS',
+  '[Shopping List] Add Ingredients',
   props<{ingredients : Ingredient[]}>() 
 )
 
 export const updateIngredient = createAction(
-  '[Shopping List] UPDATE_INGREDIENT',
+  '[Shopping List] Update Ingredients',
   props <Ingredient>()
 );
 
 export const deleteIngredient = createAction(
-  '[Shopping List] DELETE_INGREDIENT',
+  '[Shopping List] Delete Ingredients',
 )
 
 
 export const startEdit = createAction(
-  '[Shopping List] EDIT_INGREDIENT',
+  '[Shopping List] Edit Ingredient',
   props<{index : number}>()
 )
 
 export const stopEdit = createAction(
-  '[Shopping Edit] STOP_EDIT'
+  '[Shopping Edit] Stop Edit'
 )

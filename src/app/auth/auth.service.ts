@@ -91,13 +91,6 @@ export class AuthService {
         );
 
         if (loadedUser.token) {
-            // this.user.next(loadedUser);
-            this.store.dispatch(authActions.Login({
-                email: loadedUser.email,
-                userId: loadedUser.id,
-                token: loadedUser.token,
-                expirationDate: new Date(userData._tokenExpirationDate)
-            }));
             const expirationDuration =
                 new Date(userData._tokenExpirationDate).getTime() -
                 new Date().getTime();
@@ -129,7 +122,7 @@ export class AuthService {
         const user = new User(email, userId, token, expirationDate);
         this.router.navigate(['/recipes']);
         // this.user.next(user);
-        this.store.dispatch(authActions.Login({ email: email, userId: userId, token: token, expirationDate: expirationDate }))
+        // this.store.dispatch(authActions.A({ email: email, userId: userId, token: token, expirationDate: expirationDate }))
         this.autoLogout(expiresIn * 1000);
         localStorage.setItem('userData', JSON.stringify(user));
     }

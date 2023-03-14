@@ -13,6 +13,8 @@ import { AuthModule } from './auth/auth.module';
 import { StoreModule } from '@ngrx/store';
 import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
 import { appReducer } from './store/app.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './auth/store/auth.effects';
 
 @NgModule({
   declarations: [
@@ -28,8 +30,10 @@ import { appReducer } from './store/app.reducer';
     HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot(appReducer),
+    EffectsModule.forRoot(AuthEffects),
     SharedModule,
     CoreModule,
+    EffectsModule.forRoot([AuthEffects]),
   ],
   entryComponents : [AlertComponent],
   bootstrap: [AppComponent]
