@@ -28,7 +28,7 @@ export class AuthComponent implements OnInit, OnDestroy {
         this.store.select('auth').subscribe(authState => {
             this.isLoading = authState.loading;
             this.error = authState.authError;
-            if(this.error){
+            if (this.error) {
                 this.showErrorAlert(this.error);
             }
         })
@@ -44,30 +44,14 @@ export class AuthComponent implements OnInit, OnDestroy {
         }
         const email = form.value.email;
         const password = form.value.password;
-        let authObs!: Observable<AuthResponseData>;
-        this.isLoading = true;
         if (this.isLoginMode) {
-            // authObs = this.authService.login(email, password);
             this.store.dispatch(AuthActions.LoginStart({ email: email, password: password }))
 
         }
         else {
-            // authObs = this.authService.signUp(email, password);
+            this.store.dispatch(AuthActions.SignupStart({ email: email, password: password }));
         }
- 
-        // authObs.subscribe({
-        //     next: (res) => {
-        //         console.log(res)
-        //         this.isLoading = false;
 
-        //     },
-        //     error: (errorRes) => {
-        //         this.error = errorRes;
-        //         this.showErrorAlert(errorRes);
-        //         this.isLoading = false;
-
-        //     }
-        // })
         form.reset();
     }
 
