@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { Logout } from '../auth/store/auth.actions';
 
 import { DataStorageService } from '../shared/data-storage.service';
 
@@ -22,6 +23,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       next: (user) => {
         // this.isAuthenticated = !user? false : true;
         // shortcut
+        console.log('here',user);
         this.isAuthenticated = !!user;
       }
     })
@@ -39,7 +41,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
   onLogout() {
-    this.authService.logout();
+    // this.authService.logout();
+    this.store.dispatch(Logout());
   }
   ngOnDestroy(): void {
     this.userSub.unsubscribe();

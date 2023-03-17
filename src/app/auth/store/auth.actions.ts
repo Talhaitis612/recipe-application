@@ -5,6 +5,7 @@ import { createAction, props } from "@ngrx/store";
 
 export const LoginStart = createAction('[Auth] Login Start', props<{ email: string, password: string }>())
 export const SignupStart = createAction('[Auth] Signup Start', props<{ email: string, password: string }>())
+export const AutoLogin = createAction('[Auth] Auto Login');
 
 
 
@@ -24,7 +25,6 @@ export const AuthenticateFail = createAction('[Auth] Authenticate Fail', props<{
 
 
 
-
-
+export const ClearError = createAction('[Auth] Clear Error');
 export const Logout = createAction('[Auth] Logout');
 

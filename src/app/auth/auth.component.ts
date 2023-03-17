@@ -18,6 +18,7 @@ export class AuthComponent implements OnInit, OnDestroy {
     error: string | any = null;
 
     private closeSub!: Subscription;
+    private storeSub! : Subscription;
 
     @ViewChild(PlaceHolderDirective, { static: false }) alertHost!: PlaceHolderDirective;
 
@@ -25,7 +26,7 @@ export class AuthComponent implements OnInit, OnDestroy {
     constructor(private authService: AuthService, private componentFactoryResolver: ComponentFactoryResolver, private store: Store<fromApp.AppState>) { }
     ngOnInit(): void {
 
-        this.store.select('auth').subscribe(authState => {
+       this.storeSub = this.store.select('auth').subscribe(authState => {
             this.isLoading = authState.loading;
             this.error = authState.authError;
             if (this.error) {
@@ -56,7 +57,7 @@ export class AuthComponent implements OnInit, OnDestroy {
     }
 
     onHandleError() {
-        this.error = null
+        this.store.dispatch(AuthActions.ClearError());
     }
     // dynamically creating component
     private showErrorAlert(message: string) {
@@ -76,6 +77,9 @@ export class AuthComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         if (this.closeSub) {
             this.closeSub.unsubscribe();
+        }
+        if(this.storeSub){
+            this.storeSub.unsubscribe();
         }
     }
 }
