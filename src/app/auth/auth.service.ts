@@ -9,7 +9,6 @@ import * as authActions from "./store/auth.actions";
 })
 export class AuthService {
 
-    // user = new BehaviorSubject<User>(null!);
     private tokenExpirationTimer: any;
 
     constructor(private store: Store<fromApp.AppState>
