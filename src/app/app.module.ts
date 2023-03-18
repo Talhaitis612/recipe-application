@@ -9,12 +9,16 @@ import { AlertComponent } from './shared/alert/alert.component';
 import { HeaderComponent } from './header/header.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
-import { AuthModule } from './auth/auth.module';
 import { StoreModule } from '@ngrx/store';
-import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
 import { appReducer } from './store/app.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './auth/store/auth.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { RecipeEffects } from './recipes/store/recipe.effects';
+
+
 
 @NgModule({
   declarations: [
@@ -30,10 +34,11 @@ import { AuthEffects } from './auth/store/auth.effects';
     HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot(appReducer),
-    EffectsModule.forRoot(AuthEffects),
+    EffectsModule.forRoot([AuthEffects, RecipeEffects]),
+    StoreDevtoolsModule.instrument({logOnly : environment.production}),
     SharedModule,
     CoreModule,
-    EffectsModule.forRoot([AuthEffects]),
+    StoreRouterConnectingModule.forRoot(),
   ],
   entryComponents : [AlertComponent],
   bootstrap: [AppComponent]
