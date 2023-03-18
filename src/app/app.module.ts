@@ -28,7 +28,7 @@ import { RecipeEffects } from './recipes/store/recipe.effects';
   // Browser Module provides directives such as ngFor, ngIf
   // The browser module should only be imported in the Root module as it creates Browser Environment
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
