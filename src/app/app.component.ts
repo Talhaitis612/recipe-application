@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AuthService } from './auth/auth.service';
 import { AutoLogin } from './auth/store/auth.actions';
 import { AppState } from './store/app.reducer';
 
@@ -11,9 +11,13 @@ import { AppState } from './store/app.reducer';
 })
 export class AppComponent implements OnInit{
 
-  constructor(private store : Store<AppState>){}
+  constructor(private store : Store<AppState>, @Inject (PLATFORM_ID) private platformId : any){
+
+  }
   ngOnInit(): void {
-    this.store.dispatch(AutoLogin());
+    if(isPlatformBrowser(this.platformId)){
+      this.store.dispatch(AutoLogin());
+    }
   }
 
 }
